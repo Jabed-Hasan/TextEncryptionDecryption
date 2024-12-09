@@ -4,7 +4,7 @@ public class PlayfairCipher {
 
     private char[][] matrix = new char[5][5];
     private String key;
-    private static final String ALPHABET = "ABCDEFGHIKLMNOPQRSTUVWXYZ"; // I and J are combined
+    private static final String ALPHABET = "ABCDEFGHIKLMNOPQRSTUVWXYZ"; 
 
     public PlayfairCipher(String key) {
         this.key = key;
@@ -40,7 +40,7 @@ public class PlayfairCipher {
 
     // Format the input text for the Playfair cipher
     private String formatText(String text) {
-        text = text.toUpperCase().replace("J", "I").replaceAll("[^A-Z]", ""); // Remove non-letters, treat J as I
+        text = text.toUpperCase().replace("J", "I").replaceAll("[^A-Z]", ""); 
         StringBuilder formattedText = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
             char first = text.charAt(i);
@@ -53,12 +53,12 @@ public class PlayfairCipher {
             }
         }
         if (formattedText.length() % 2 != 0) {
-            formattedText.append('X'); // Ensure even length
+            formattedText.append('X'); 
         }
         return formattedText.toString();
     }
 
-    // Process digraphs for encryption or decryption
+    // Process for encryption or decryption
     private String processDigraphs(String text, boolean encrypt) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < text.length(); i += 2) {
@@ -97,15 +97,15 @@ public class PlayfairCipher {
         return null;
     }
 
-    // Encrypt the text using the Playfair cipher
+  
     public String encrypt(String text) {
         text = formatText(text);
         return processDigraphs(text, true);
     }
 
-    // Decrypt the text using the Playfair cipher
+    
     public String decrypt(String text) {
-        text = formatText(text); // Use the same formatting logic
-        return processDigraphs(text, false); // Pass 'false' for decryption
+        text = formatText(text); 
+        return processDigraphs(text, false); 
     }
 }
